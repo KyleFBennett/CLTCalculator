@@ -8,12 +8,15 @@ import math
 from tabulate import tabulate   # for table 
 import xlsxwriter               # for exporting to excel
 
-print ('Project title:')
+print('Project title:')
 project = input()
 
-print ('Grain length?')
+print('Panel thickness:')
+panelThickness = int(input())
+
+print('Grain length?')
 grainLength = input()
-print ('short length?')
+print('short length?')
 shortLength = input()
 
 # machined dimensions
