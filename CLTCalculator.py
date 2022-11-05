@@ -12,12 +12,107 @@ print('Project title:')
 project = input()
 
 print('Panel thickness:')
-panelThickness = int(input())
+panelThickness = int(input())    
 
 print('Grain length?')
 grainLength = input()
 print('short length?')
 shortLength = input()
+
+if panelThickness == 66:
+    machinedPlankthickness1 = 22
+    machinedPlankthickness2 = 22
+    machinedPlankthickness3 = 22
+    roughPlankthickness1 = 25
+    roughPlankthickness2 = 25
+    roughPlankthickness3 = 25
+
+elif panelThickness == 77:
+    machinedPlankthickness1 = 22
+    machinedPlankthickness2 = 33
+    machinedPlankthickness3 = 22
+    roughPlankthickness1 = 25
+    roughPlankthickness2 = 38
+    roughPlankthickness3 = 25
+
+elif panelThickness == 88:
+    machinedPlankthickness1 = 33
+    machinedPlankthickness2 = 22
+    machinedPlankthickness3 = 33
+    roughPlankthickness1 = 38
+    roughPlankthickness2 = 25
+    roughPlankthickness3 = 38
+
+elif panelThickness == 99:
+    machinedPlankthickness1 = 33
+    machinedPlankthickness2 = 33
+    machinedPlankthickness3 = 33
+    roughPlankthickness1 = 38
+    roughPlankthickness2 = 38
+    roughPlankthickness3 = 38
+
+elif panelThickness == 110:
+    machinedPlankthickness1 = 22
+    machinedPlankthickness2 = 22
+    machinedPlankthickness3 = 22
+    machinedPlankthickness4 = 22
+    machinedPlankthickness5 = 22
+    roughPlankthickness1 = 25
+    roughPlankthickness2 = 25
+    roughPlankthickness3 = 25
+    roughPlankthickness4 = 25
+    roughPlankthickness5 = 25
+
+elif panelThickness == 121:
+    machinedPlankthickness1 = 22
+    machinedPlankthickness2 = 22
+    machinedPlankthickness3 = 33
+    machinedPlankthickness4 = 22
+    machinedPlankthickness5 = 22
+    roughPlankthickness1 = 25
+    roughPlankthickness2 = 25
+    roughPlankthickness3 = 38
+    roughPlankthickness4 = 25
+    roughPlankthickness5 = 25
+
+elif panelThickness == 132:
+    machinedPlankthickness1 = 22
+    machinedPlankthickness2 = 33
+    machinedPlankthickness3 = 22
+    machinedPlankthickness4 = 33
+    machinedPlankthickness5 = 22
+    roughPlankthickness1 = 25
+    roughPlankthickness2 = 38
+    roughPlankthickness3 = 25
+    roughPlankthickness4 = 38
+    roughPlankthickness5 = 25
+
+elif panelThickness == 143:
+    machinedPlankthickness1 = 33
+    machinedPlankthickness2 = 22
+    machinedPlankthickness3 = 33
+    machinedPlankthickness4 = 22
+    machinedPlankthickness5 = 33
+    roughPlankthickness1 = 38
+    roughPlankthickness2 = 25
+    roughPlankthickness3 = 38
+    roughPlankthickness4 = 25
+    roughPlankthickness5 = 38
+
+elif panelThickness == 165:
+    machinedPlankthickness1 = 33
+    machinedPlankthickness2 = 33
+    machinedPlankthickness3 = 33
+    machinedPlankthickness4 = 33
+    machinedPlankthickness5 = 33
+    roughPlankthickness1 = 38
+    roughPlankthickness2 = 38
+    roughPlankthickness3 = 38
+    roughPlankthickness4 = 38
+    roughPlankthickness5 = 38
+
+else:
+    print ('This is not a standard length')
 
 # machined dimensions
 
@@ -78,73 +173,141 @@ merge_format = workbook.add_format({
     'align': 'center',
     })                                                      # to merge cells 
 
-# heading
+# heading -             ROW 1
 
 worksheet.merge_range('A1:J1', 'N1', merge_format)
 
-# machined & rough
+# machined & rough -    ROW 2
 
 worksheet.merge_range('C2:F2', 'Machined', merge_format)
 worksheet.merge_range('G2:J2', 'Rough', merge_format)
 
-# titles
+# titles -              ROW 3 
 
 worksheet.write('A3', 'QTY', bold)
 worksheet.write('B3', 'Length (mm)', bold)
-worksheet.write('C3', 'Width (mm)', bold)
-worksheet.write('D3', 'Thickness (mm)', bold)
+worksheet.write('C3', 'Thickness (mm)', bold)
+worksheet.write('D3', 'Width (mm)', bold)
 worksheet.write('E3', 'Volume (m3)', bold)
 worksheet.write('F3', 'Weight (kg)', bold)
-worksheet.write('G3', 'Width (mm)', bold)
-worksheet.write('H3', 'Thickness (mm)', bold)
+worksheet.write('G3', 'Thickness (mm)', bold)
+worksheet.write('H3', 'Width (mm)', bold)
 worksheet.write('I3', 'Volume (m3)', bold)
 worksheet.write('J3', 'Weight (kg)', bold)
 
-worksheet.write('D7', 'TOTAL', bold)            # totals for final row
-worksheet.write('H7', 'TOTAL', bold)            # totals for final row 
+# for 3 layer and 5 layer
 
-# formulas for machined volume
+if panelThickness < 100:
 
-worksheet.write_formula('E4', '=round(A4*(B4/1000)*(C4/1000)*(D4/1000),3)')
-worksheet.write_formula('E5', '=round(A5*(B5/1000)*(C5/1000)*(D5/1000),3)')
-worksheet.write_formula('E6', '=round(A6*(B6/1000)*(C6/1000)*(D6/1000),3)')
+    # all formulas below 
 
-# formulas for machined weight
+    worksheet.write('D7', 'TOTAL', bold)            # totals for final row
+    worksheet.write('H7', 'TOTAL', bold)            # totals for final row 
 
-worksheet.write_formula('F4', '=round(E4*480,3)')
-worksheet.write_formula('F5', '=round(E5*480,3)')
-worksheet.write_formula('F6', '=round(E6*480,3)')
+    # formulas for machined volume
 
-# formulas for rough volume
+    worksheet.write_formula('E4', '=round(A4*(B4/1000)*(C4/1000)*(D4/1000),3)')
+    worksheet.write_formula('E5', '=round(A5*(B5/1000)*(C5/1000)*(D5/1000),3)')
+    worksheet.write_formula('E6', '=round(A6*(B6/1000)*(C6/1000)*(D6/1000),3)')
 
-worksheet.write_formula('I4', '=round(A4*(B4/1000)*(G4/1000)*(H4/1000),3)')
-worksheet.write_formula('I5', '=round(A5*(B5/1000)*(G5/1000)*(H5/1000),3)')
-worksheet.write_formula('I6', '=round(A6*(B6/1000)*(G6/1000)*(H6/1000),3)')
+    # formulas for machined weight
 
-# formulas for rough weight
+    worksheet.write_formula('F4', '=round(E4*480,3)')
+    worksheet.write_formula('F5', '=round(E5*480,3)')
+    worksheet.write_formula('F6', '=round(E6*480,3)')
 
-worksheet.write_formula('J4', '=round(I4*480,3)')
-worksheet.write_formula('J5', '=round(I5*480,3)')
-worksheet.write_formula('J6', '=round(I6*480,3)')
+    # formulas for rough volume
 
-# formula for total machined voulme and weight
+    worksheet.write_formula('I4', '=round(A4*(B4/1000)*(G4/1000)*(H4/1000),3)')
+    worksheet.write_formula('I5', '=round(A5*(B5/1000)*(G5/1000)*(H5/1000),3)')
+    worksheet.write_formula('I6', '=round(A6*(B6/1000)*(G6/1000)*(H6/1000),3)')
 
-worksheet.write_formula('E7', '=SUM(E4,E5,E6)', bold)
-worksheet.write_formula('F7', '=SUM(F4,F5,F6)', bold)
+    # formulas for rough weight
 
-# formula for total machined voulme and weight
+    worksheet.write_formula('J4', '=round(I4*480,3)')
+    worksheet.write_formula('J5', '=round(I5*480,3)')
+    worksheet.write_formula('J6', '=round(I6*480,3)')
 
-worksheet.write_formula('I7', '=SUM(I4,I5,I6)', bold)
-worksheet.write_formula('J7', '=SUM(J4,J5,J6)', bold)
+    # formula for total machined voulme and weight
 
-# table info
+    worksheet.write_formula('E7', '=SUM(E4,E5,E6)', bold)
+    worksheet.write_formula('F7', '=SUM(F4,F5,F6)', bold)
 
-FJmachining = (
-    [grainPlanks, grainNestedLength, plankThickness, plankWidth, roughThickness, roughWidth],
-    [shortPlanks, shortNestedLength, plankThickness, plankWidth, roughThickness, roughWidth],
-    [grainPlanks, grainNestedLength, plankThickness, plankWidth, roughThickness, roughWidth]
-    )
- 
+    # formula for total machined voulme and weight
+
+    worksheet.write_formula('I7', '=SUM(I4,I5,I6)', bold)
+    worksheet.write_formula('J7', '=SUM(J4,J5,J6)', bold)
+
+    # table info
+
+    FJmachining = (
+        [grainPlanks, grainNestedLength, machinedPlankthickness1, plankWidth, roughPlankthickness1, roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankthickness2, plankWidth, roughPlankthickness2, roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankthickness3, plankWidth, roughPlankthickness3, roughWidth]
+        )
+
+else:
+    
+    # all formulas below 
+
+    worksheet.write('D9', 'TOTAL', bold)            # totals for final row
+    worksheet.write('H9', 'TOTAL', bold)            # totals for final row 
+
+    # formulas for machined volume
+
+    worksheet.write_formula('E4', '=round(A4*(B4/1000)*(C4/1000)*(D4/1000),3)')
+    worksheet.write_formula('E5', '=round(A5*(B5/1000)*(C5/1000)*(D5/1000),3)')
+    worksheet.write_formula('E6', '=round(A6*(B6/1000)*(C6/1000)*(D6/1000),3)')
+    worksheet.write_formula('E7', '=round(A5*(B7/1000)*(C7/1000)*(D7/1000),3)')
+    worksheet.write_formula('E8', '=round(A6*(B8/1000)*(C8/1000)*(D8/1000),3)')
+
+    # formulas for machined weight
+
+    worksheet.write_formula('F4', '=round(E4*480,3)')
+    worksheet.write_formula('F5', '=round(E5*480,3)')
+    worksheet.write_formula('F6', '=round(E6*480,3)')
+    worksheet.write_formula('F7', '=round(E7*480,3)')
+    worksheet.write_formula('F8', '=round(E8*480,3)')
+
+    # formulas for rough volume
+
+    worksheet.write_formula('I4', '=round(A4*(B4/1000)*(G4/1000)*(H4/1000),3)')
+    worksheet.write_formula('I5', '=round(A5*(B5/1000)*(G5/1000)*(H5/1000),3)')
+    worksheet.write_formula('I6', '=round(A6*(B6/1000)*(G6/1000)*(H6/1000),3)')
+    worksheet.write_formula('I7', '=round(A5*(B7/1000)*(G7/1000)*(H7/1000),3)')
+    worksheet.write_formula('I8', '=round(A6*(B8/1000)*(G8/1000)*(H8/1000),3)')
+
+    # formulas for rough weight
+
+    worksheet.write_formula('J4', '=round(I4*480,3)')
+    worksheet.write_formula('J5', '=round(I5*480,3)')
+    worksheet.write_formula('J6', '=round(I6*480,3)')
+    worksheet.write_formula('J7', '=round(I7*480,3)')
+    worksheet.write_formula('J8', '=round(I8*480,3)')
+
+    # formula for total machined voulme and weight
+
+    worksheet.write_formula('E9', '=SUM(E4,E5,E6,E7,E8)', bold)
+    worksheet.write_formula('F9', '=SUM(F4,F5,F6,F7,F8)', bold)
+
+    # formula for total machined voulme and weight
+
+    worksheet.write_formula('I9', '=SUM(I4,I5,I6,I7,I8)', bold)
+    worksheet.write_formula('J9', '=SUM(J4,J5,J6,J7,J8)', bold)
+
+    # table info
+
+    FJmachining = (
+        [grainPlanks, grainNestedLength, machinedPlankthickness1, plankWidth, roughPlankthickness1, roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankthickness2, plankWidth, roughPlankthickness2, roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankthickness3, plankWidth, roughPlankthickness3, roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankthickness4, plankWidth, roughPlankthickness4, roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankthickness5, plankWidth, roughPlankthickness5, roughWidth]
+        )
+
+# end of panel thickness
+
+
 row = 3                                         # starts under titles so that it does not erase
 col = 0
 
@@ -158,45 +321,3 @@ for planks, length, plankThickness, plankWidth, roughThickness, roughWidth in (F
     row += 1
 
 workbook.close()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
