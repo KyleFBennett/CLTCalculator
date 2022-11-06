@@ -19,6 +19,8 @@ grainLength = input()
 print('short length?')
 shortLength = input()
 
+# panel thickness from input 
+
 if panelThickness == 66:
     machinedPlankthickness1 = 22
     machinedPlankthickness2 = 22
@@ -117,12 +119,10 @@ else:
 # machined dimensions
 
 plankWidth = int(140)
-plankThickness = int(22)
 
 # rough dimensions
 
 roughWidth = int(152)
-roughThickness = int(25)
 
 # quantity of planks
 
@@ -134,20 +134,7 @@ shortPlanks = math.ceil(int(grainLength) / plankWidth + 1)
 shortNestedLength = int(grainPlanks * plankWidth) - 50
 grainNestedLength = int(shortPlanks * plankWidth) - 50
 
-panelArea = (int(grainLength) * int(shortLength)) / 100000 
-nestedArea = (int(grainNestedLength) * int(shortNestedLength)) / 100000
-
-percentage = round((int(panelArea) / int(nestedArea)) * 100,0)
-waste = 100 - int(percentage)
-
-# print (grainPlanks)
-# print (shortPlanks)
-# print (shortNestedLength)
-# print (grainNestedLength)
-# print (str(panelArea) + 'm2')  
-# print (str(nestedArea) + 'm2')
-# print (str(percentage) + '%')
-# print ('Waste: ' + str(waste) + '%')
+print ('Waste: ' + str(waste) + '%')
 
 # table 
 
@@ -307,8 +294,7 @@ else:
 
 # end of panel thickness
 
-
-row = 3                                         # starts under titles so that it does not erase
+row = 3                                         # starts under titles so that it does not overwrite information 
 col = 0
 
 for planks, length, plankThickness, plankWidth, roughThickness, roughWidth in (FJmachining):
