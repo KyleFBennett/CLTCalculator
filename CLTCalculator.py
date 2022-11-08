@@ -22,96 +22,41 @@ shortLength = input()
 # panel thickness from input 
 
 if panelThickness == 66:
-    machinedPlankthickness1 = 22
-    machinedPlankthickness2 = 22
-    machinedPlankthickness3 = 22
-    roughPlankthickness1 = 25
-    roughPlankthickness2 = 25
-    roughPlankthickness3 = 25
+    machinedPlankthickness = [22,22,22]
+    roughPlankthickness = [25,25,25]
+
 
 elif panelThickness == 77:
-    machinedPlankthickness1 = 22
-    machinedPlankthickness2 = 33
-    machinedPlankthickness3 = 22
-    roughPlankthickness1 = 25
-    roughPlankthickness2 = 38
-    roughPlankthickness3 = 25
+    machinedPlankthickness = [22,33,22]
+    roughPlankthickness = [25,38,25]
 
 elif panelThickness == 88:
-    machinedPlankthickness1 = 33
-    machinedPlankthickness2 = 22
-    machinedPlankthickness3 = 33
-    roughPlankthickness1 = 38
-    roughPlankthickness2 = 25
-    roughPlankthickness3 = 38
+    machinedPlankthickness = [33,22,33]
+    roughPlankthickness = [38,25,38]
 
 elif panelThickness == 99:
-    machinedPlankthickness1 = 33
-    machinedPlankthickness2 = 33
-    machinedPlankthickness3 = 33
-    roughPlankthickness1 = 38
-    roughPlankthickness2 = 38
-    roughPlankthickness3 = 38
+    machinedPlankthickness = [33,33,33]
+    roughPlankthickness = [38,38,38]
 
 elif panelThickness == 110:
-    machinedPlankthickness1 = 22
-    machinedPlankthickness2 = 22
-    machinedPlankthickness3 = 22
-    machinedPlankthickness4 = 22
-    machinedPlankthickness5 = 22
-    roughPlankthickness1 = 25
-    roughPlankthickness2 = 25
-    roughPlankthickness3 = 25
-    roughPlankthickness4 = 25
-    roughPlankthickness5 = 25
+    machinedPlankthickness = [22,22,22,22,22]
+    roughPlankthickness = [25,25,25,25,25]
 
 elif panelThickness == 121:
-    machinedPlankthickness1 = 22
-    machinedPlankthickness2 = 22
-    machinedPlankthickness3 = 33
-    machinedPlankthickness4 = 22
-    machinedPlankthickness5 = 22
-    roughPlankthickness1 = 25
-    roughPlankthickness2 = 25
-    roughPlankthickness3 = 38
-    roughPlankthickness4 = 25
-    roughPlankthickness5 = 25
+    machinedPlankthickness = [22,22,33,22,22]
+    roughPlankthickness = [25,25,38,25,25]
 
 elif panelThickness == 132:
-    machinedPlankthickness1 = 22
-    machinedPlankthickness2 = 33
-    machinedPlankthickness3 = 22
-    machinedPlankthickness4 = 33
-    machinedPlankthickness5 = 22
-    roughPlankthickness1 = 25
-    roughPlankthickness2 = 38
-    roughPlankthickness3 = 25
-    roughPlankthickness4 = 38
-    roughPlankthickness5 = 25
+    machinedPlankthickness = [22,33,22,33,22]
+    roughPlankthickness = [25,38,25,38,25]
 
 elif panelThickness == 143:
-    machinedPlankthickness1 = 33
-    machinedPlankthickness2 = 22
-    machinedPlankthickness3 = 33
-    machinedPlankthickness4 = 22
-    machinedPlankthickness5 = 33
-    roughPlankthickness1 = 38
-    roughPlankthickness2 = 25
-    roughPlankthickness3 = 38
-    roughPlankthickness4 = 25
-    roughPlankthickness5 = 38
+    machinedPlankthickness = [33,22,33,22,33]
+    roughPlankthickness = [38,25,38,25,38]
 
 elif panelThickness == 165:
-    machinedPlankthickness1 = 33
-    machinedPlankthickness2 = 33
-    machinedPlankthickness3 = 33
-    machinedPlankthickness4 = 33
-    machinedPlankthickness5 = 33
-    roughPlankthickness1 = 38
-    roughPlankthickness2 = 38
-    roughPlankthickness3 = 38
-    roughPlankthickness4 = 38
-    roughPlankthickness5 = 38
+    machinedPlankthickness = [33,33,33,33,33]
+    roughPlankthickness = [38,38,38,38,38]
 
 else:
     print ('This is not a standard length')
@@ -134,7 +79,7 @@ shortPlanks = math.ceil(int(grainLength) / plankWidth + 1)
 shortNestedLength = int(grainPlanks * plankWidth) - 50
 grainNestedLength = int(shortPlanks * plankWidth) - 50
 
-print ('Waste: ' + str(waste) + '%')
+# print ('Waste: ' + str(waste) + '%')
 
 # table 
 
@@ -228,9 +173,9 @@ if panelThickness < 100:
     # table info
 
     FJmachining = (
-        [grainPlanks, grainNestedLength, machinedPlankthickness1, plankWidth, roughPlankthickness1, roughWidth],
-        [shortPlanks, shortNestedLength, machinedPlankthickness2, plankWidth, roughPlankthickness2, roughWidth],
-        [grainPlanks, grainNestedLength, machinedPlankthickness3, plankWidth, roughPlankthickness3, roughWidth]
+        [grainPlanks, grainNestedLength, machinedPlankthickness[0], plankWidth, roughPlankthickness[0], roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankthickness[1], plankWidth, roughPlankthickness[1], roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankthickness[2], plankWidth, roughPlankthickness[2], roughWidth]
         )
 
 else:
@@ -285,16 +230,16 @@ else:
     # table info
 
     FJmachining = (
-        [grainPlanks, grainNestedLength, machinedPlankthickness1, plankWidth, roughPlankthickness1, roughWidth],
-        [shortPlanks, shortNestedLength, machinedPlankthickness2, plankWidth, roughPlankthickness2, roughWidth],
-        [grainPlanks, grainNestedLength, machinedPlankthickness3, plankWidth, roughPlankthickness3, roughWidth],
-        [shortPlanks, shortNestedLength, machinedPlankthickness4, plankWidth, roughPlankthickness4, roughWidth],
-        [grainPlanks, grainNestedLength, machinedPlankthickness5, plankWidth, roughPlankthickness5, roughWidth]
+        [grainPlanks, grainNestedLength, machinedPlankthickness[0], plankWidth, roughPlankthickness[0], roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankthickness[1], plankWidth, roughPlankthickness[1], roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankthickness[2], plankWidth, roughPlankthickness[2], roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankthickness[3], plankWidth, roughPlankthickness[3], roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankthickness[4], plankWidth, roughPlankthickness[4], roughWidth]
         )
 
 # end of panel thickness
 
-row = 3                                         # starts under titles so that it does not overwrite information 
+row = 3                                         # starts under titles so that it does not erase
 col = 0
 
 for planks, length, plankThickness, plankWidth, roughThickness, roughWidth in (FJmachining):
@@ -307,3 +252,4 @@ for planks, length, plankThickness, plankWidth, roughThickness, roughWidth in (F
     row += 1
 
 workbook.close()
+
