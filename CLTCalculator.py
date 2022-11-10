@@ -15,51 +15,51 @@ print('Panel thickness:')
 panelThickness = int(input())    
 
 print('Grain length?')
-grainLength = input()
+grainLength = int(input())
 print('short length?')
-shortLength = input()
+shortLength = int(input())
 
 # panel thickness from input 
 
 if panelThickness == 66:
-    machinedPlankthickness = [22,22,22]
-    roughPlankthickness = [25,25,25]
+    machinedPlankThickness = [22,22,22]
+    roughPlankThickness = [25,25,25]
 
 elif panelThickness == 77:
-    machinedPlankthickness = [22,33,22]
+    machinedPlankThickness = [22,33,22]
     roughPlankthickness = [25,38,25]
 
 elif panelThickness == 88:
-    machinedPlankthickness = [33,22,33]
-    roughPlankthickness = [38,25,38]
+    machinedPlankThickness = [33,22,33]
+    roughPlankThickness = [38,25,38]
 
 elif panelThickness == 99:
-    machinedPlankthickness = [33,33,33]
-    roughPlankthickness = [38,38,38]
+    machinedPlankThickness = [33,33,33]
+    roughPlankThickness = [38,38,38]
 
 elif panelThickness == 110:
-    machinedPlankthickness = [22,22,22,22,22]
-    roughPlankthickness = [25,25,25,25,25]
+    machinedPlankThickness = [22,22,22,22,22]
+    roughPlankThickness = [25,25,25,25,25]
 
 elif panelThickness == 121:
-    machinedPlankthickness = [22,22,33,22,22]
-    roughPlankthickness = [25,25,38,25,25]
+    machinedPlankThickness = [22,22,33,22,22]
+    roughPlankThickness = [25,25,38,25,25]
 
 elif panelThickness == 132:
-    machinedPlankthickness = [22,33,22,33,22]
-    roughPlankthickness = [25,38,25,38,25]
+    machinedPlankThickness = [22,33,22,33,22]
+    roughPlankThickness = [25,38,25,38,25]
 
 elif panelThickness == 143:
-    machinedPlankthickness = [33,22,33,22,33]
-    roughPlankthickness = [38,25,38,25,38]
+    machinedPlankThickness = [33,22,33,22,33]
+    roughPlankThickness = [38,25,38,25,38]
 
 elif panelThickness == 154:
-    machinedPlankthickness = [33,33,22,33,33]
-    roughPlankthickness = [38,38,25,38,38]
+    machinedPlankThickness = [33,33,22,33,33]
+    roughPlankThickness = [38,38,25,38,38]
 
 elif panelThickness == 165:
-    machinedPlankthickness = [33,33,33,33,33]
-    roughPlankthickness = [38,38,38,38,38]
+    machinedPlankThickness = [33,33,33,33,33]
+    roughPlankThickness = [38,38,38,38,38]
 
 else:
     print ('This is not a standard length')
@@ -74,13 +74,13 @@ roughWidth = int(152)
 
 # quantity of planks
 
-grainPlanks = math.ceil(int(shortLength) / plankWidth + 1)
-shortPlanks = math.ceil(int(grainLength) / plankWidth + 1)
+grainPlanks = math.ceil(shortLength / plankWidth + 1)
+shortPlanks = math.ceil(grainLength / plankWidth + 1)
 
 # length of planks
 
-shortNestedLength = int(grainPlanks * plankWidth) - 50
-grainNestedLength = int(shortPlanks * plankWidth) - 50
+shortNestedLength = grainPlanks * plankWidth - 50
+grainNestedLength = shortPlanks * plankWidth - 50
 
 # print ('Waste: ' + str(waste) + '%')
 
@@ -133,10 +133,7 @@ worksheet.write('J3', 'Weight (kg)',    bold)
 # for 3 layer and 5 layer
 
 
-# all formulas below 
 
-worksheet.write('D7', 'TOTAL', bold)            # totals for final row
-worksheet.write('H7', 'TOTAL', bold)            # totals for final row 
 
 # formulas for machined volume
 
@@ -163,7 +160,6 @@ worksheet.write_formula('J5', '=round(I5*480,3)')
 worksheet.write_formula('J6', '=round(I6*480,3)')
 
 if panelThickness < 100:
-    
     # formula for total machined voulme and weight
 
     worksheet.write_formula('E7', '=SUM(E4,E5,E6)', bold)
@@ -174,12 +170,21 @@ if panelThickness < 100:
     worksheet.write_formula('I7', '=SUM(I4,I5,I6)', bold)
     worksheet.write_formula('J7', '=SUM(J4,J5,J6)', bold)
 
+    # panel thickness
+
+    worksheet.write_formula('C7', '=SUM(C4,C5,C6)', bold)
+
+    # TOTAL 
+
+    worksheet.write('D7', 'TOTAL', bold)            # totals for final row
+    worksheet.write('H7', 'TOTAL', bold)            # totals for final row 
+
     # table info
 
     FJmachining = (
-        [grainPlanks, grainNestedLength, machinedPlankthickness[0], plankWidth, roughPlankthickness[0], roughWidth],
-        [shortPlanks, shortNestedLength, machinedPlankthickness[1], plankWidth, roughPlankthickness[1], roughWidth],
-        [grainPlanks, grainNestedLength, machinedPlankthickness[2], plankWidth, roughPlankthickness[2], roughWidth]
+        [grainPlanks, grainNestedLength, machinedPlankThickness[0], plankWidth, roughPlankThickness[0], roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankThickness[1], plankWidth, roughPlankThickness[1], roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankThickness[2], plankWidth, roughPlankThickness[2], roughWidth]
         )
 
 else:
@@ -208,19 +213,28 @@ else:
     worksheet.write_formula('E9', '=SUM(E4,E5,E6,E7,E8)', bold)
     worksheet.write_formula('F9', '=SUM(F4,F5,F6,F7,F8)', bold)
 
-    # formula for total machined voulme and weight
+    # formula for total rough volume and weight
 
     worksheet.write_formula('I9', '=SUM(I4,I5,I6,I7,I8)', bold)
     worksheet.write_formula('J9', '=SUM(J4,J5,J6,J7,J8)', bold)
 
+    # panel thickness
+
+    worksheet.write_formula('C9', '=SUM(C4,C5,C6,C7,C8)', bold)
+
+    # TOTAL 
+
+    worksheet.write('D9', 'TOTAL', bold)            # totals for final row
+    worksheet.write('H9', 'TOTAL', bold)            # totals for final row 
+
     # table info
 
     FJmachining = (
-        [grainPlanks, grainNestedLength, machinedPlankthickness[0], plankWidth, roughPlankthickness[0], roughWidth],
-        [shortPlanks, shortNestedLength, machinedPlankthickness[1], plankWidth, roughPlankthickness[1], roughWidth],
-        [grainPlanks, grainNestedLength, machinedPlankthickness[2], plankWidth, roughPlankthickness[2], roughWidth],
-        [shortPlanks, shortNestedLength, machinedPlankthickness[3], plankWidth, roughPlankthickness[3], roughWidth],
-        [grainPlanks, grainNestedLength, machinedPlankthickness[4], plankWidth, roughPlankthickness[4], roughWidth]
+        [grainPlanks, grainNestedLength, machinedPlankThickness[0], plankWidth, roughPlankThickness[0], roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankThickness[1], plankWidth, roughPlankThickness[1], roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankThickness[2], plankWidth, roughPlankThickness[2], roughWidth],
+        [shortPlanks, shortNestedLength, machinedPlankThickness[3], plankWidth, roughPlankThickness[3], roughWidth],
+        [grainPlanks, grainNestedLength, machinedPlankThickness[4], plankWidth, roughPlankThickness[4], roughWidth]
         )
 
 # end of panel thickness
