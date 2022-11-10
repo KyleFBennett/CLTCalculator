@@ -25,7 +25,6 @@ if panelThickness == 66:
     machinedPlankthickness = [22,22,22]
     roughPlankthickness = [25,25,25]
 
-
 elif panelThickness == 77:
     machinedPlankthickness = [22,33,22]
     roughPlankthickness = [25,38,25]
@@ -53,6 +52,10 @@ elif panelThickness == 132:
 elif panelThickness == 143:
     machinedPlankthickness = [33,22,33,22,33]
     roughPlankthickness = [38,25,38,25,38]
+
+elif panelThickness == 154:
+    machinedPlankthickness = [33,33,22,33,33]
+    roughPlankthickness = [38,38,25,38,38]
 
 elif panelThickness == 165:
     machinedPlankthickness = [33,33,33,33,33]
@@ -116,50 +119,51 @@ worksheet.merge_range('G2:J2', 'Rough', merge_format)
 
 # titles -              ROW 3 
 
-worksheet.write('A3', 'QTY', bold)
-worksheet.write('B3', 'Length (mm)', bold)
+worksheet.write('A3', 'QTY',            bold)
+worksheet.write('B3', 'Length (mm)',    bold)
 worksheet.write('C3', 'Thickness (mm)', bold)
-worksheet.write('D3', 'Width (mm)', bold)
-worksheet.write('E3', 'Volume (m3)', bold)
-worksheet.write('F3', 'Weight (kg)', bold)
+worksheet.write('D3', 'Width (mm)',     bold)
+worksheet.write('E3', 'Volume (m3)',    bold)
+worksheet.write('F3', 'Weight (kg)',    bold)
 worksheet.write('G3', 'Thickness (mm)', bold)
-worksheet.write('H3', 'Width (mm)', bold)
-worksheet.write('I3', 'Volume (m3)', bold)
-worksheet.write('J3', 'Weight (kg)', bold)
+worksheet.write('H3', 'Width (mm)',     bold)
+worksheet.write('I3', 'Volume (m3)',    bold)
+worksheet.write('J3', 'Weight (kg)',    bold)
 
 # for 3 layer and 5 layer
 
+
+# all formulas below 
+
+worksheet.write('D7', 'TOTAL', bold)            # totals for final row
+worksheet.write('H7', 'TOTAL', bold)            # totals for final row 
+
+# formulas for machined volume
+
+worksheet.write_formula('E4', '=round(A4*(B4/1000)*(C4/1000)*(D4/1000),3)')
+worksheet.write_formula('E5', '=round(A5*(B5/1000)*(C5/1000)*(D5/1000),3)')
+worksheet.write_formula('E6', '=round(A6*(B6/1000)*(C6/1000)*(D6/1000),3)')
+
+# formulas for machined weight
+
+worksheet.write_formula('F4', '=round(E4*480,3)')
+worksheet.write_formula('F5', '=round(E5*480,3)')
+worksheet.write_formula('F6', '=round(E6*480,3)')
+
+# formulas for rough volume
+
+worksheet.write_formula('I4', '=round(A4*(B4/1000)*(G4/1000)*(H4/1000),3)')
+worksheet.write_formula('I5', '=round(A5*(B5/1000)*(G5/1000)*(H5/1000),3)')
+worksheet.write_formula('I6', '=round(A6*(B6/1000)*(G6/1000)*(H6/1000),3)')
+
+# formulas for rough weight
+
+worksheet.write_formula('J4', '=round(I4*480,3)')
+worksheet.write_formula('J5', '=round(I5*480,3)')
+worksheet.write_formula('J6', '=round(I6*480,3)')
+
 if panelThickness < 100:
-
-    # all formulas below 
-
-    worksheet.write('D7', 'TOTAL', bold)            # totals for final row
-    worksheet.write('H7', 'TOTAL', bold)            # totals for final row 
-
-    # formulas for machined volume
-
-    worksheet.write_formula('E4', '=round(A4*(B4/1000)*(C4/1000)*(D4/1000),3)')
-    worksheet.write_formula('E5', '=round(A5*(B5/1000)*(C5/1000)*(D5/1000),3)')
-    worksheet.write_formula('E6', '=round(A6*(B6/1000)*(C6/1000)*(D6/1000),3)')
-
-    # formulas for machined weight
-
-    worksheet.write_formula('F4', '=round(E4*480,3)')
-    worksheet.write_formula('F5', '=round(E5*480,3)')
-    worksheet.write_formula('F6', '=round(E6*480,3)')
-
-    # formulas for rough volume
-
-    worksheet.write_formula('I4', '=round(A4*(B4/1000)*(G4/1000)*(H4/1000),3)')
-    worksheet.write_formula('I5', '=round(A5*(B5/1000)*(G5/1000)*(H5/1000),3)')
-    worksheet.write_formula('I6', '=round(A6*(B6/1000)*(G6/1000)*(H6/1000),3)')
-
-    # formulas for rough weight
-
-    worksheet.write_formula('J4', '=round(I4*480,3)')
-    worksheet.write_formula('J5', '=round(I5*480,3)')
-    worksheet.write_formula('J6', '=round(I6*480,3)')
-
+    
     # formula for total machined voulme and weight
 
     worksheet.write_formula('E7', '=SUM(E4,E5,E6)', bold)
@@ -179,41 +183,23 @@ if panelThickness < 100:
         )
 
 else:
-    
-    # all formulas below 
-
-    worksheet.write('D9', 'TOTAL', bold)            # totals for final row
-    worksheet.write('H9', 'TOTAL', bold)            # totals for final row 
-
     # formulas for machined volume
 
-    worksheet.write_formula('E4', '=round(A4*(B4/1000)*(C4/1000)*(D4/1000),3)')
-    worksheet.write_formula('E5', '=round(A5*(B5/1000)*(C5/1000)*(D5/1000),3)')
-    worksheet.write_formula('E6', '=round(A6*(B6/1000)*(C6/1000)*(D6/1000),3)')
-    worksheet.write_formula('E7', '=round(A5*(B7/1000)*(C7/1000)*(D7/1000),3)')
-    worksheet.write_formula('E8', '=round(A6*(B8/1000)*(C8/1000)*(D8/1000),3)')
+    worksheet.write_formula('E7', '=round(A7*(B7/1000)*(C7/1000)*(D7/1000),3)')
+    worksheet.write_formula('E8', '=round(A8*(B8/1000)*(C8/1000)*(D8/1000),3)')
 
     # formulas for machined weight
 
-    worksheet.write_formula('F4', '=round(E4*480,3)')
-    worksheet.write_formula('F5', '=round(E5*480,3)')
-    worksheet.write_formula('F6', '=round(E6*480,3)')
     worksheet.write_formula('F7', '=round(E7*480,3)')
     worksheet.write_formula('F8', '=round(E8*480,3)')
 
     # formulas for rough volume
 
-    worksheet.write_formula('I4', '=round(A4*(B4/1000)*(G4/1000)*(H4/1000),3)')
-    worksheet.write_formula('I5', '=round(A5*(B5/1000)*(G5/1000)*(H5/1000),3)')
-    worksheet.write_formula('I6', '=round(A6*(B6/1000)*(G6/1000)*(H6/1000),3)')
-    worksheet.write_formula('I7', '=round(A5*(B7/1000)*(G7/1000)*(H7/1000),3)')
-    worksheet.write_formula('I8', '=round(A6*(B8/1000)*(G8/1000)*(H8/1000),3)')
+    worksheet.write_formula('I7', '=round(A7*(B7/1000)*(G7/1000)*(H7/1000),3)')
+    worksheet.write_formula('I8', '=round(A8*(B8/1000)*(G8/1000)*(H8/1000),3)')
 
     # formulas for rough weight
 
-    worksheet.write_formula('J4', '=round(I4*480,3)')
-    worksheet.write_formula('J5', '=round(I5*480,3)')
-    worksheet.write_formula('J6', '=round(I6*480,3)')
     worksheet.write_formula('J7', '=round(I7*480,3)')
     worksheet.write_formula('J8', '=round(I8*480,3)')
 
@@ -252,4 +238,3 @@ for planks, length, plankThickness, plankWidth, roughThickness, roughWidth in (F
     row += 1
 
 workbook.close()
-
