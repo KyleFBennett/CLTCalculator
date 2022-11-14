@@ -1,3 +1,5 @@
+# divide volume by bundle volume to create order list 
+
 def bundleVolume(numberOfPlanks, plankWidth, plankHeight, plankLength, units):
     volume = numberOfPlanks * plankWidth * plankHeight * plankLength / units
     return volume
@@ -24,14 +26,21 @@ thirty84800 = bundleVolume(84, 152, 38, 4800, 1000000000)
 
 thirty8 = [thirty82400, thirty82700, thirty83000, thirty83600, thirty84200, thirty84800]
 
-# print volume
+# input volme and divide by bundle volumes 
 
-# volume = input()
+print('Thickness:')
 
-# print(volume)
+thickness = int(input())
 
-volume = 20
+print('Volume:')
 
-print(thirty8)
+volume = int(input())
 
+if thickness == 25: 
+    newList = [volume / x for x in twenty5]
+    print(newList)
 
+else:
+    newList = [volume / x for x in thirty8]
+    print(newList)
+    
